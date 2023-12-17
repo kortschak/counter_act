@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform:
+        - ubuntu-latest
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+    - name: unit tests
+      run: |
+        XDG_RUNTIME_ROOT=$(dirname $XDG_RUNTIME_DIR)
+        XDG_RUNTIME_ROOT_ROOT=$(dirname $XDG_RUNTIME_ROOT)
+        echo "$XDG_RUNTIME_DIR:"
+        ls $XDG_RUNTIME_DIR || true
+        echo "$XDG_RUNTIME_ROOT:"
+        ls $XDG_RUNTIME_ROOT || true
+        echo "$XDG_RUNTIME_ROOT_ROOT:"
+        ls $XDG_RUNTIME_ROOT_ROOT || true
